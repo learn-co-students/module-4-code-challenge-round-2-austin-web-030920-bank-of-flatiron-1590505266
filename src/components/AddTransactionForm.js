@@ -1,10 +1,34 @@
 import React, { Component } from "react";
+const URL = 'http://localhost:6001';
 
 class AddTransactionForm extends Component {
+  handleSubmit = (e) => {
+    console.log(e);
+
+    e.preventDefault();
+    
+    fetch(`${URL}/transactions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json',
+      },
+      body: JSON.stringify({
+        date: '',
+        description: '',
+        category: '',
+        amount: '',
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log('Success:', data);
+    })
+  }
+
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form">
+        <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="inline fields">
             <input type="date" name="date" />
             <input type="text" name="description" placeholder="Description" />
