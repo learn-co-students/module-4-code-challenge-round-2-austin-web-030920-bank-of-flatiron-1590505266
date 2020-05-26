@@ -49,20 +49,29 @@ class AccountContainer extends Component {
   addTransaction = event => {
     event.preventDefault()
     console.log(event.target.value)
-    let newFormInfo = {dateValue: this.state.dateValue, descValue: this.state.descValue, catValue: this.state.catValue, amountValue: this.state.amountValue}
-    let newInfo = ({ transactions: this.state.transactions.concat(newFormInfo) });
-
+    let newTransaction = { dateValue: this.state.dateValue, descValue: this.state.descValue, catValue: this.state.catValue, amountValue: this.state.amountValue }
+    
+    // okay our problem here i think is that we're updating state like mad crazy, so when we hit the enter button
+    // our uhhh our individual values are setStating and rerendering too quickly for the addTransaction function to keep up
+    // or something lol
+    // but i know it has to do with setting state and rerendering bc doesn't it always lol
+    
     fetch(URL, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {"Content-type": "application/json"},
       body: JSON.stringify({
-        "date": this.state.dateValue,
-        "description": this.state.descValue,
-        "category": this.state.catValue,
-        "amount": this.state.amountValue
+        "date": newTransaction.dateValue,
+        "description": newTransaction.descValue,
+        "category": newTransaction.catValue,
+        "amount": newTransaction.amountValue
       })
     })
-      .then(this.getTransactions())
+ 
+    this.setState({ transactions: this.state.transactions.push(newTransaction) });
+
+
+  // i'm not sure what i've done here anymore. I think the advanced deliverables would have been easier than this one lol
+  // okay, google: how does post fetch?
   }
 
   searchTransactions = event => {
