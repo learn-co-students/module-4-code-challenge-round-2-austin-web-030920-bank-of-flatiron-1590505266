@@ -5,34 +5,40 @@ class AddTransactionForm extends Component {
   constructor() {
     super();
 
-    this.state = {
-      date: "",
-      description: "",
-      amount: "",
-      category: ""
+    this.state = this.getInitialState()
+    //console.log(this.state)
 
-    };
+  }
+  
+  getInitialState = () => ({ date: ' ', description: ' ', amount: ' ', category: ' ' })
+
+  handleChange = event => {
+   // console.log(e)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
-  handleChangeDate = event => {
-    this.setState({ date: event.target.value });
-  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { date, description, amount, category } = this.state
+    fetch('http://localhost:6001/transactions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        date: date,
+        description: description,
+        amount: amount,
+        category: category
 
-  handleChangeDescription = event => {
-    this.setState({ description: event.target.value });
-  }
-
-  handleChangeAmount = event => {
-    this.setState({ amount: event.target.value });
-  }
-
-  handleChangeCategory = event => {
-    this.setState({ category: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
+      })
+    })
+      .then(resp => resp.json())
+      .then(trans => this.props.addTransaction(trans))
+    this.setState(this.getInitialState())
   }
 
   render() {
@@ -40,19 +46,19 @@ class AddTransactionForm extends Component {
       <div className="ui segment">
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="inline fields">
-            <input type="date" name="date" value={this.state.date} onChange={this.handleChangeDate} />
-            <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChangeDescription} />
-            <input type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChangeCategory} />
+            <input type="date" name="date" value={this.state.date} onChange={e =>this.handleChange(e)} />
+            <input type="text" name="description" value={this.state.description} placeholder="Description" onChange={e=>this.handleChange(e)} />
+            <input type="text" name="category" value={this.state.category} placeholder="Category" onChange={e =>this.handleChange(e)} />
             <input
               type="number"
               name="amount"
+              value={this.state.amount}
               placeholder="Amount"
               step="0.01"
-              value={this.state.amount} onChange={this.handleChangeAmount}
+              onChange={e => this.handleChange(e)}
             />
           </div>
-          <button className="ui button" type="submit" onClick = {(e) => {this.props.handleSubmit(e)}}
-          >
+          <button className="ui button" type="submit">
             Add Transaction
           </button>
         </form>
