@@ -36,21 +36,30 @@ class App extends Component {
           amount: transaction.target.amount.value,
         },
       ],
+      filtered: [
+        ...this.state.transactions,
+        {
+          date: transaction.target.date.value,
+          description: transaction.target.description.value,
+          category: transaction.target.category.value,
+          amount: transaction.target.amount.value,
+        },
+      ],
     });
     // console.log(`${API}/${transaction.target.id}`);
   };
 
-  componentDidUpdate = () => {
-    // console.log(this.state.transactions)
-    fetch(API, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Accepts: "application/json",
-      },
-      body: this.state.transactions,
-    });
-  }
+  // componentDidUpdate = () => {
+  //   // console.log(this.state.transactions)
+  //   fetch(API, {
+  //     method: "UPDATE",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //       Accepts: "application/json",
+  //     },
+  //     body: this.state.transactions,
+  //   });
+  // }
 
   search = (keyword) => {
     this.setState({
