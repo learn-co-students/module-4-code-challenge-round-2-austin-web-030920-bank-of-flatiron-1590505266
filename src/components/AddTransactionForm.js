@@ -4,7 +4,14 @@ class AddTransactionForm extends Component {
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form">
+        <form
+          className="ui form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            // console.log(e.target.date.value)
+            this.props.submitHandler(e)
+          }}
+        >
           <div className="inline fields">
             <input type="date" name="date" />
             <input type="text" name="description" placeholder="Description" />
