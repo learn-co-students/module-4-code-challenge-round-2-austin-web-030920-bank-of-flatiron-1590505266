@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
+import PropTypes from "prop-types";
 
 const URL = "http://localhost:6001/transactions";
 
@@ -31,13 +32,12 @@ class AccountContainer extends Component {
   // transactionSubmit = (e) => {
   //   e.preventDefault();
   //   let newTrans = this.sculptSubmit(e);
-  //   this.setState({ transactions: { ...this.state.transactions, newTrans } });
+  //   this.setState({ transactions: [ ...this.state.transactions, newTrans ] });
   // };
 
   transactionSubmit = (e) => {
     e.preventDefault();
     let newTransaction = this.sculptSubmit(e);
-    let newGuy;
     fetch(URL, {
       method: "POST",
       headers: {
@@ -46,19 +46,29 @@ class AccountContainer extends Component {
       body: JSON.stringify(newTransaction),
     })
       .then((r) => r.json())
-      .then((json) => (newGuy = json));
-    this.setState({ transactions: { ...this.state.transactions, newGuy } });
+      .then((json) =>
+        this.setState({ transactions: [...this.state.transactions, json] })
+      );
   };
+
+  searchBar = (e) => {
+    this.setState({search: e.target.value})
+    // console.log(e.target.value)
+  }
 
   render() {
     return (
       <div>
-        <Search />
+        <Search changeHandler={this.searchBar} />
         <AddTransactionForm submitHandler={this.transactionSubmit} />
-        <TransactionsList trans={this.state.transactions} />
+        <TransactionsList trans={this.state.transactions} search={this.state.search} />
       </div>
     );
   }
 }
+
+AccountContainer.propTypes = {
+  trans: PropTypes.array,
+};
 
 export default AccountContainer;
