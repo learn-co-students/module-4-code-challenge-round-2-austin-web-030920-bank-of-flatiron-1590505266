@@ -20,23 +20,24 @@ class AccountContainer extends Component {
   };
 
   handleSearch = (e) => {
-    this.setState({filered: e.target.value})
+    this.setState({ filered: e.target.value })
+      const filterSearch =
+      this.state.transactions.filter(t => {
+        return t.description.toLowerCase().includes(this.state.filered.toLowerCase());
+      })
   }
   
 
 
   render() {
-   const filterSearch =
-      this.state.transactions.filter(t => {
-        return t.description.toLowerCase().includes(this.state.filered.toLowerCase());
-      })
+  
     
     const { transactions } = this.state;
     return (
       <div>
         <Search handleSearch={this.handleSearch} />
         <AddTransactionForm />
-        {transactions.map((t, indx) => <TransactionsList key={indx} t={t} filterSearch={this.filterSearch}/>)}
+        {transactions.map((t, indx) => <TransactionsList key={indx} t={t}/>)}
       </div>
     );
   }
