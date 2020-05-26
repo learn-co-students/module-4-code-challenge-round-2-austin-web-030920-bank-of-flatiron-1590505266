@@ -10,6 +10,7 @@ class AccountContainer extends Component {
     super();
     this.state = {
       transactions: [],
+      searchValue: ''
       // dateValue: '',
       // descValue: '',
       // catValue: '',
@@ -53,8 +54,10 @@ class AccountContainer extends Component {
   // }
 
   searchTransactions = (e) => {
-    console.log("Searched!")
-    this.setState({transactions: this.state.transactions.filter(t => t.description === e.target.input.value)})
+    console.log(e)
+    //why tf is e undefined? oh wait i need to pass something into the function on the other end--
+    this.setState({searchValue: e})
+   return this.setState({transactions: this.state.transactions.filter(tr => tr.description === this.state.searchValue)})
   }
   
   getTransactions = () => {
@@ -66,7 +69,7 @@ class AccountContainer extends Component {
   render() {
     return (
       <div>
-        <Search handleSearch={this.searchTransactions}/>
+        <Search handleSearch={this.searchTransactions} t={this.state.searchValue} />
         <AddTransactionForm handleSubmit={this.addTransaction} handleDate={this.handleDate} handleAmount={this.handleAmount} handleCat={this.handleCat} handleDesc={this.handleDesc}/>
         <TransactionsList transactions={this.state.transactions} />
       </div>

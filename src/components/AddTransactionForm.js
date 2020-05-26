@@ -5,13 +5,12 @@ class AddTransactionForm extends Component {
     super();
     this.state = {
       transactions: [],
-      dateValue: '',
-      descValue: '',
-      catValue: '',
-      amountValue: ''
+      // dateValue: '',
+      // descValue: '',
+      // catValue: '',
+      // amountValue: ''
     }
   }
-
 
   
   render() {
