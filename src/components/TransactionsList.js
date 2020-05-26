@@ -19,7 +19,12 @@ const TransactionsList = (props) => {
             <h3 className="ui center aligned header">Amount</h3>
           </th>
         </tr>
-        {props.trans.map(trans => <Transaction transaction={trans} />)}
+        {props.trans.length > 0 ? props.trans.map((transaction) => (<Transaction trans={transaction} />))
+        : setTimeout(() => {props.trans.map((transaction) => (<Transaction trans={transaction}/> ), 2000)})
+        }
+        // {props.trans.map((transaction) => (
+        //   <Transaction trans={transaction} />
+        // ))}
       </tbody>
     </table>
   );

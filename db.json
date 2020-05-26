@@ -83,6 +83,88 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "date": "1212-12-12",
+      "description": "TEST",
+      "category": "TEST",
+      "amount": "12",
+      "id": 17
+    },
+    {
+      "date": "2020-12-13",
+      "description": "FOOD",
+      "category": "FOOD",
+      "amount": "50.50",
+      "id": 18
+    },
+    {
+      "date": "2020-02-02",
+      "description": "FOOD",
+      "category": "FOOD",
+      "amount": "50",
+      "id": 19
+    },
+    {
+      "date": "1212-12-12",
+      "description": "TEST",
+      "category": "FOOD",
+      "amount": "12",
+      "id": 20
+    },
+    {
+      "date": "1212-12-12",
+      "description": "1212",
+      "category": "1212",
+      "amount": "1212",
+      "id": 21
+    },
+    {
+      "date": "4444-04-04",
+      "description": "4444",
+      "category": "4444",
+      "amount": "4444",
+      "id": 22
+    },
+    {
+      "date": "1313-12-12",
+      "description": "1313",
+      "category": "1313",
+      "amount": "1313",
+      "id": 23
+    },
+    {
+      "date": "1414-12-14",
+      "description": "1414",
+      "category": "1414",
+      "amount": "1414",
+      "id": 24
+    },
+    {
+      "date": "1111-11-11",
+      "description": "1111",
+      "category": "1111",
+      "amount": "1111",
+      "id": 25
+    },
+    {
+      "date": "1111-11-11",
+      "description": "1111",
+      "category": "1111",
+      "amount": "1111",
+      "id": 26
     }
   ]
 }
