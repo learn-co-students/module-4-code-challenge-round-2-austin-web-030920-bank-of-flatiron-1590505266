@@ -44,22 +44,22 @@ class App extends Component {
           category: transaction.target.category.value,
           amount: transaction.target.amount.value,
         },
-      ],
+      ], //Was almost able to get this working w/o having to update both transactions and state here but couldn't. Had trouble with the asynchrynisoty and filtered was not automatically pulling from an update transactions, but would if I searched and then cleared the search field
     });
     // console.log(`${API}/${transaction.target.id}`);
   };
 
-  // componentDidUpdate = () => {
-  //   // console.log(this.state.transactions)
-  //   fetch(API, {
-  //     method: "UPDATE",
-  //     headers: {
-  //       "Content-type": "application/json",
-  //       Accepts: "application/json",
-  //     },
-  //     body: this.state.transactions,
-  //   });
-  // }
+  componentDidUpdate = () => {
+    // console.log(this.state.transactions)
+    // fetch(API, {
+    //   method: "UPDATE",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //     Accepts: "application/json",
+    //   },
+    //   body: this.state.transactions,
+    // });
+  }
 
   search = (keyword) => {
     this.setState({
