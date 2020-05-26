@@ -4,12 +4,14 @@ import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
 class AccountContainer extends Component {
+  
   render() {
     return (
       <div>
         <Search />
-        <AddTransactionForm />
-        <TransactionsList />
+        <AddTransactionForm  transactions = {this.props.transactions} handleSubmit = {this.props.handleSubmit}/>
+        <TransactionsList transactions = {this.props.transactions}/> 
+       
       </div>
     );
   }
