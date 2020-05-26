@@ -1,54 +1,43 @@
 import React, { Component } from "react";
 
 class AddTransactionForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      transactions: [],
-      // dateValue: '',
-      // descValue: '',
-      // catValue: '',
-      // amountValue: ''
-    }
-  }
 
-  
   render() {
     return (
       <div className="ui segment">
         <form className="ui form">
           <div className="inline fields">
-            <input 
-            type="date" 
-            name="date" 
-            // value={this.state.dateValue} 
-            // onChange={this.props.handleDate()}
+            <input
+              type="date"
+              name="date"
+              value={this.props.dateValue}
+              onChange={event => this.props.handleDate(event)}
             />
-            <input 
-            type="text" 
-            name="description" 
-            placeholder="Description" 
-            // value={this.props.descValue} 
-            // onChange={this.props.handleDesc()}
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              value={this.props.descValue}
+              onChange={event => this.props.handleDesc(event)}
             />
-            <input 
-            type="text" 
-            name="category" 
-            placeholder="Category" 
-            // value={this.state.catValue} 
-            // onChange={this.props.handleCat()} 
+            <input
+              type="text"
+              name="category"
+              placeholder="Category"
+              value={this.props.catValue}
+              onChange={event => this.props.handleCat(event)}
             />
             <input
               type="number"
               name="amount"
               placeholder="Amount"
               step="0.01"
-              // value={this.state.amountValue}
-              // onChange={this.props.handleAmount()}
+              value={this.props.amountValue}
+              onChange={event => this.props.handleAmount(event)}
             />
           </div>
-          <button className="ui button" type="submit" 
-          // onSubmit={() => this.props.handleSubmit()}
+          <button className="ui button" type="submit"
+            onSubmit={event => this.props.handleSubmit(event)}
           >
             Add Transaction
           </button>
