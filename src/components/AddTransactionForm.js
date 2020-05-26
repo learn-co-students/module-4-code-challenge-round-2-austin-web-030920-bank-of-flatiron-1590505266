@@ -14,7 +14,7 @@ class AddTransactionForm extends Component {
       },
       body: JSON.stringify({
         date: '',
-        description: '',
+        description: 'its static /:',
         category: '',
         amount: '',
       }),
